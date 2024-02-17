@@ -1,6 +1,8 @@
 package com.tech.poc.tdd;
 
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class StringCalculator {
 
@@ -19,12 +21,22 @@ public class StringCalculator {
 
         // Initialize sum
         int totalSum = 0;
+        List<Integer> negativeNumbers = new ArrayList();
+
         // Iterate through numbers
         for (String num : numArray) {
             if (!num.isEmpty()) {
                 int numInt = Integer.parseInt(num);
-                totalSum += numInt;
+                if (numInt < 0) {
+                    negativeNumbers.add(numInt);
+                } else {
+                    totalSum += numInt;
+                }
             }
+        }
+        if (!negativeNumbers.isEmpty()) {
+            throw new IllegalArgumentException("Negative numbers not allowed: " +
+                    negativeNumbers.stream().map(Object::toString).collect(Collectors.joining(", ")));
         }
         return totalSum;
     }
