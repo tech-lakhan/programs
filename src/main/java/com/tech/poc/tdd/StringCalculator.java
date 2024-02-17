@@ -8,9 +8,8 @@ public class StringCalculator {
         if (numbers.isEmpty()) {
             return 0;
         }
-        String delimiter = ",";
-        // Split the numbers using the delimiter
-        String[] numArray = numbers.split(delimiter);
+        // Handle both commas and new lines as delimiters
+        String[] numArray = numbers.split("[,\n]");
         // Initialize sum
         int totalSum = 0;
         // Iterate through numbers
